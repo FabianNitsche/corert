@@ -23,8 +23,11 @@ Generating the rootfs
 ---------------------
 The `cross\build-rootfs.sh` script can be used to download the files needed for cross compilation. It will generate an Ubuntu 14.04 rootfs as this is what CoreRT targets.
 
-    Usage: build-rootfs.sh [BuildArch]
-    BuildArch can be: arm, arm64
+    Usage: build-rootfs.sh [BuildArch] [LinuxCodeName] [lldx.y] [--skipmount]
+    BuildArch can be: arm(default), armel, arm64, x86
+    LinuxCodeName - optional, Code name for Linux, can be: trusty(default), vivid, wily, xenial, zesty, bionic, alpine. If BuildArch is armel, LinuxCodeName is jessie(default) or tizen.
+    lldbx.y - optional, LLDB version, can be: lldb3.6(default), lldb3.8, lldb3.9, lldb4.0, no-lldb. Ignored for alpine
+    --skipunmount - optional, will skip the unmount of rootfs folder.
 
 The `build-rootfs.sh` script must be run as root as it has to make some symlinks to the system, it will by default generate the rootfs in `cross\rootfs\<BuildArch>` however this can be changed by setting the `ROOTFS_DIR` environment variable.
 
